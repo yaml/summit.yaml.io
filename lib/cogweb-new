@@ -1,0 +1,40 @@
+#! bash
+
+command:new() {
+  local id file editor
+  assert:cogweb
+
+  editor=${EDITOR:-vim}
+  id=$(cogweb-new-id)
+  file=".cog/$id.cog"
+
+  while true; do
+    $editor $file
+
+    [[ -s $file ]] ||
+      err "Aborting. CogWeb file not saved or empty."
+
+    if cogweb-validate $id; then
+      break
+    fi
+
+    echo
+    echo "Your CogWeb file seems to be invalid."
+    echo
+    local answer=$(prompt "Continue editing? [Yn]")
+
+    if [[ $answer == n ]]; then
+      rm $file
+      return
+    fi
+  done
+
+  cogweb-link $id
+  cogweb-commit $id
+
+  say "Created new CogWeb $id"
+}
+
+validate-cogweb-file() {
+  local file=".cog/$1.id"
+}

@@ -1,0 +1,11 @@
+#!sh
+
+[[ -n ${ZSH_VERSION-} ]] &&
+  COGWEB_ROOT="$0" ||
+  COGWEB_ROOT="$BASH_SOURCE"
+[[ $COGWEB_ROOT =~ ^/ ]] ||
+  COGWEB_ROOT="$PWD/$COGWEB_ROOT"
+export COGWEB_ROOT="$(cd "$(dirname $COGWEB_ROOT)"; pwd)"
+
+export PATH="$COGWEB_ROOT/bin:$COGWEB_ROOT/lib:$PATH"
+export MANPATH="$COGWEB_ROOT/man:${MANPATH-}"

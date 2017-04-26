@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+if [[ -z $COGWEB_ROOT ]]; then
+  cat <<...
+COGWEB_ROOT is not set. You need to run:
+
+    source $(cd $(dirname $BASH_SOURCE); pwd)/.rc
+
+...
+  exit 1
+fi
+
+source "$COGWEB_ROOT/lib/bash+.bash"
+bash+:import :std can
+
+use CogWeb
+use Assert
+use Callable
+use GetOpt
+use Prompt
+use System
+
+GETOPT_SPEC="\
+  $(basename $0) <command> <options> <arguments>
+
+Common commands:
+  new       Create and edit a new CogWeb page
+  edit      Edit an existing CogWeb page
+  build     Build wiki website from latest content
+  push      Publish CogWeb site
+  test      Run a local test server
+
+See '$(basename $0) help' for more help.
+
+Options:
+--
+h           Show the command summary
+help        Browse the complete '$(basename $0)' documentation
+ 
+q,quiet     Show minimal output
+v,verbose   Show verbose output
+ 
+x,debug     Debug - Turn on Bash trace (set -x) output
+"
+
+main() {
+  original_arguments=("$@")
+  if [[ -n $COGWEB_DIR ]]; then
+    cd $COGWEB_DIR
+  fi
+  GETOPT_ARGS='command @command_arguments' \
+    getopt "$@"
+  callable-or-source "$command" ||
+    error "unknown 'cogweb' command '$command'"
+  "command:$command" "${command_arguments[@]}"
+}
+
+[[ $0 != "$BASH_SOURCE" ]] || main "$@"
