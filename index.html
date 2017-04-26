@@ -1,0 +1,93 @@
+---
+title: Welcome to the YAML Summit
+layout: default
+---
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "{{ site.url }}/",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ site.url }}/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+<h3>Latest posts ({{ site.posts | size }} total):</h3>
+
+<ul>
+{% for post in paginator.posts %}
+    <li itemscope itemtype="http://schema.org/BlogPosting"><a itemprop="url" href="{{ post.url }}"><span itemprop="dateModified">{{ post.date | date: "%Y-%m-%d" }}</span> - <span itemprop="name headline">{{ post.title }}</span></a>
+        <link itemprop="mainEntityOfPage" href="{{ site.url }}{{ post.url }}" />
+        <meta itemprop="image" content="{{ site.url }}/images/sitelogo.png" />
+        <meta itemprop="datePublished" content="{{ post.created | date: '%Y-%m-%d' }}" />
+    {% if post.language == 'de' %}
+        <img class="emoji" title="&#x3a;de&#x3a;" alt="&#x3a;de&#x3a;" src="https://assets-cdn.github.com/images/icons/emoji/de.png" width="20" height="20" align="absmiddle" />
+        <meta itemprop="inLanguage" content="de" />
+    {% else %}
+        <meta itemprop="inLanguage" content="en" />
+    {% endif %}
+    {% if post.updated != post.created %}
+        <img class="emoji" title="&#x3a;up&#x3a;" alt="&#x3a;up&#x3a;" src="https://assets-cdn.github.com/images/icons/emoji/up.png" width="20" height="20" align="absmiddle" />
+    {% endif %}
+        <div itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <meta itemprop="name" content="John Public" />
+        </div>
+        <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+          <meta itemprop="name" content="John Public" />
+          <link itemprop="logo" href="{{ site.url }}/images/sitelogo.png" />
+        </div>
+    </li>
+{% endfor %}
+</ul>
+
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Newer</a>
+  {% else %}
+    <span>&laquo; Newer</span>
+  {% endif %}
+
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <em>{{ page }}</em>
+    {% elsif page == 1 %}
+      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
+
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older &raquo;</a>
+  {% else %}
+    <span>Older &raquo;</span>
+  {% endif %}
+</div>
+{% endif %}
+
+{% comment %}
+All posts:
+
+<ul>
+{% for post in site.posts %}
+  <li><a href="{{ post.url }}">{{ post.date | date: "%Y-%m-%d" }} - {{ post.title }}</a></li>
+{% endfor %}
+</ul>
+
+Categories:
+<ul>
+{% for category in site.categories %}
+  <li>{{ category[0] }}
+    <ul>
+    {% for page in category[1] %}
+        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </li>
+{% endfor %}
+</ul>
+{% endcomment %}

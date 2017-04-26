@@ -1,0 +1,50 @@
+---
+title: The YAML Summit Wiki
+language: en
+layout: default
+created: 2017-04-26 12:34:56 -0800
+updated: 2017-04-26 12:34:56 -0800
+toc: false
+tags: []
+---
+This wiki contains information about the YAML Summit, a multiday meeting of
+people interested in furthering the YAML data language and all of its concerns
+and related projects.
+
+The first YAML Summit will be held in Berlin Germany, May 5-8 2017.
+
+Topics to be addressed:
+
+* [YAML 1.3]() is the next version of the YAML language. It is meant to be
+  almost identical to YAML 1.2. The language will be tightened down. Quirky and
+  unused parts may be removed. Tests will be made for everything. Thorough
+  processes and documentation will be put in place. It will be a model for
+  future YAML versions.
+* [YAML 2.0]() is the YAML that we want to have for future. It will keep the
+  spirit and best parts of YAML, while trying to make the language simpler and
+  more useful as a whole. Ideas that are decided too bold for 1.3, will likely
+  go into 2.0.
+* [Yadda]() is the code name for a YAML subset language targeted specifically
+  for config files, and not for serialization.
+* [YAML Websites]() include www.yaml.org, www.yaml.io and also auxillary sites
+  like the Test Matrix and the YAML Wiki.
+* [YAML Test Suite]() is becoming the single source of truth for all YAML
+  related decisions and concerns.
+* [YAML 1.2 Spec]() infrastructure has been worked on and needs to be formally
+  put into production. Related web assets like the type repository need to be
+  addressed.
+* [SchemaType]() is a schema language that defines data structure types for
+  data that fits the YAML model. It can be used not only to validate data but
+  to generate much of the software that processes the data. It uses a syntax
+  DSL that is also valid YAML.
+* [YAML Developers Guide]() is documentation (with pointers to tests) that
+  inform a YAML framework developer about what decisions they should make.
+* [YAML Metrics]() would be useful to see where and how people are using YAML
+  in the real world.
+
+Other links:
+
+* [Summit Agenda]()
+* [Summit Attendees]()
+* [Summit Logistics]()
+* [Fun Things to do in Berlin]()

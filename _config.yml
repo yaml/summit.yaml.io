@@ -1,0 +1,47 @@
+name: summit.yaml.io
+description: The YAML Summit
+
+url: http://summit.yaml.io
+
+#permalink: pretty
+permalink: none
+
+paginate: 20
+
+markdown: kramdown
+markdown_ext: markdown,mkdown,mkdn,mkd,md
+
+# This is for {% highlight %} blocks
+highlighter: rouge
+
+safe: true
+lsi: false
+
+encoding: utf-8
+timezone: America/Los_Angeles
+
+github:
+  project_title: summit.yaml.io
+  project_tagline: YAML Summit Wiki
+
+gems:
+- kramdown
+- jemoji
+- jekyll-sitemap
+- jekyll-coffeescript
+- jekyll-paginate
+- jekyll-redirect-from
+- jekyll-mentions
+
+kramdown:
+  input: GFM
+  hard_wrap: false
+  # This is for fenced code blocks: ~~~
+  syntax_highlighter: rouge
+
+defaults:
+- scope:
+    path: ""     # an empty string here means all files in the project
+    type: posts  # "post" for Jekyll <=2.2
+  values:
+    language: en
